@@ -1,16 +1,20 @@
-# React + Vite
+# 🌐 Illumine '26 | Silver Jubilee Newsletter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A cyberpunk-themed, interactive web newsletter built for **Illumine '26**, the 25th-anniversary reunion event of the Department of Information Technology at Jadavpur University. 
 
-Currently, two official plugins are available:
+This project uses a custom, purely CSS-driven aesthetic to create a retro-futuristic terminal vibe, complete with dot-matrix typography, animated deep-dive plasma backgrounds, and scroll-triggered neon glows.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+* **Cyberpunk UI/UX:** A dark mode, high-contrast neon design using cyan (`#66FCF1`) and purple (`#D902EE`) accents.
+* **Scroll-Triggered Neon Focus:** Uses the native JavaScript `IntersectionObserver` to detect when cards enter the viewport, lighting them up dynamically (perfect for mobile and cursor-less browsing).
+* **Dot-Matrix Typography:** A custom CSS background-clipping technique to create authentic, glowing circular LED text without needing restrictive external pixel fonts.
+* **Alternating Timelines:** Clean, responsive alternating flex-rows to display Goodwill Messages, Recent Activities, and Events without vertical stretching or awkward cropping.
+* **Animated Deep Dive Matrix:** A 3-layer pure CSS background featuring an infinitely fading 3D grid, soft-drifting plasma orbs, and CRT scanlines.
+* **Hidden Easter Eggs:** Includes console logs for curious developers and a hidden "Drop Production DB" button at the footer.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* **Framework:** [React](https://reactjs.org/)
+* **Build Tool:** [Vite](https://vitejs.dev/) (for lightning-fast HMR and building)
+* **Styling:** Pure Custom CSS3 (Flexbox, CSS Grid, CSS Animations, Custom Properties)
