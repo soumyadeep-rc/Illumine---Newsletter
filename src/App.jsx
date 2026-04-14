@@ -1,5 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+
+const Typewriter = ({ text, speed = 100, delay = 0, cursor = true }) => {
+  const [displayedText, setDisplayedText] = useState("");
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const startTimer = setTimeout(() => setStarted(true), delay);
+    return () => clearTimeout(startTimer);
+  }, [delay]);
+
+  useEffect(() => {
+    if (started && displayedText.length < text.length) {
+      const timer = setTimeout(() => {
+        setDisplayedText(text.slice(0, displayedText.length + 1));
+      }, speed);
+      return () => clearTimeout(timer);
+    }
+  }, [displayedText, started, text, speed]);
+
+  return (
+    <>
+      {displayedText}
+      { }
+      {cursor && <span className="blinking-cursor">_</span>}
+    </>
+  );
+};
 
 function App() {
   
@@ -42,10 +69,10 @@ function App() {
 
   // Goodwill Messages Data
   const goodwillMessagesList = [
-    { name: "VC", desc: "It is with profound pleasure that I learn of Illumine 2026, the biennial reunion of the Department of Information Technology at Jadavpur University, an occasion that assumes even greater significance as it commemorates the 25th Anniversary (Silver Jubilee) of the department. Over the past quarter century, the Department of Information Technology has distinguished itself as a bastion of academic excellence, pioneering innovation, and meaningful research. Its illustrious alumni, dispersed across the globe, continue to uphold and enhance the University's legacy through their exemplary accomplishments and invaluable contributions to society. Reunions such as Illumine serve as an enduring conduit between legacy and progress --- revitalizing cherished associations, rekindling shared memories, and reinforcing a collective sense of identity among alumni, students, and faculty alike. This Silver Jubilee is not merely a celebration of a distinguished past, but also a moment to envision a future defined by renewed purpose, ambition, and excellence. I extend my sincere appreciation to the Organizing Committee for their vision, dedication, and meticulous efforts in curating this landmark event. I am confident that Illumine 2026 will inspire widespread participation from alumni across the world and stand as a truly memorable and resounding success. I convey my warmest felicitations and best wishes to the Department of Information Technology and the Organizing Committee for an enriching and inspiring celebration.", img: "/faculty-vc.png" },
-    { name: "Pro VC", desc: "", img: "/faculty-provc.png" },
+    { name: "Vice Chancellor", desc: "It is with profound pleasure that I learn of Illumine 2026, the biennial reunion of the Department of Information Technology at Jadavpur University, an occasion that assumes even greater significance as it commemorates the 25th Anniversary (Silver Jubilee) of the department. Over the past quarter century, the Department of Information Technology has distinguished itself as a bastion of academic excellence, pioneering innovation, and meaningful research. Its illustrious alumni, dispersed across the globe, continue to uphold and enhance the University's legacy through their exemplary accomplishments and invaluable contributions to society. Reunions such as Illumine serve as an enduring conduit between legacy and progress --- revitalizing cherished associations, rekindling shared memories, and reinforcing a collective sense of identity among alumni, students, and faculty alike. This Silver Jubilee is not merely a celebration of a distinguished past, but also a moment to envision a future defined by renewed purpose, ambition, and excellence. I extend my sincere appreciation to the Organizing Committee for their vision, dedication, and meticulous efforts in curating this landmark event. I am confident that Illumine 2026 will inspire widespread participation from alumni across the world and stand as a truly memorable and resounding success. I convey my warmest felicitations and best wishes to the Department of Information Technology and the Organizing Committee for an enriching and inspiring celebration.", img: "/faculty-vc.png" },
+    { name: "Pro Vice Chancellor", desc: "", img: "/faculty-provc.png" },
    // { name: "Dean of FET", desc: "", img: "/faculty-dean.jpg" },
-    { name: "HoD (Dr. Bhaskar Sardar)", desc: "", img: "/faculty-hod.jpg" },
+    { name: "HoD - Dr. Bhaskar Sardar", desc: "", img: "/faculty-hod.jpg" },
     { name: "Dr. Bibhas Chandra Dhara", desc: "", img: "/faculty-dhara.jpeg" },
     { name: "Dr. Parama Bhaumik", desc: " A Silver Legacy: 25 Years of Impact and Inspiration - It gives me immense pleasure to pen these few lines for the Illumine 2026 Newsletter. This year, we are honoured to celebrate a proud silver legacy marking 25 years of the Department of Information Technology. This milestone reflects our collective journey of dedication, growth, and aspiration. I extend my sincere appreciation to all students and contributors who made this publication possible. Our legacy is not merely confined to classrooms and laboratories or the processes of teaching and learning; it lives on in the memories, contributions and achievements of our past and present students, faculty members, and staff. Over the past two decades, the ecosystem of Information Technology has undergone profound transformation. Having had the privilege of observing these changes over 23 years of teaching, I have witnessed shifts not only in curriculum, pedagogy, career aspirations, and skill sets, but also in values and behavioural patterns. Amid these changes, the growing “zapping culture” of constant distraction is a matter of concern, where attention constantly shifts from one context to another, weakening memory, reducing depth of understanding, and increasing anxiety and distraction. It is important for us to pause, reflect, and consciously reclaim our focus. And now we have firmly entered the age of Artificial Intelligence which offers immense opportunities and automations, while also presenting challenges and uncertainties, particularly in professional domains. I encourage all of you to embrace these changes with a positive mindset. Compete not just through technical skills, but with strong human understanding, creativity, and the ability to think deeply. Learning should go beyond mechanical upskilling  towards true comprehension and innovation. I believe the future is full of possibilities waiting to be explored. Let us make this journey more humane, more connected, and more purposeful and fulfilling. Best wishes - Dr. Parama Bhaumik" 
     , img: "/faculty-bhaumik.png"},
@@ -152,16 +179,18 @@ function App() {
 
       {/* Hero Section */}
       <header id="hero" className="hero-section">
-        {/* Ambient Floating Glows */}
         <div className="ambient-glow cyan-glow"></div>
         <div className="ambient-glow purple-glow"></div>
-        
         <div className="cyber-grid"></div>
         <div className="hero-overlay"></div>
         
         <div className="hero-content">
-          <h1 className="neon-title">illumine ' 26</h1>
-          <h2 className="neon-subtitle">Dept of Information Technology</h2>
+          <h1 className="neon-title">
+            <Typewriter text="illumine ' 26" speed={150} delay={500} cursor={false} />
+          </h1>
+          <h2 className="neon-subtitle">
+            <Typewriter text="Dept of Information Technology" speed={50} delay={2500} cursor={true} />
+          </h2>
         </div>
       </header>
 
@@ -192,7 +221,7 @@ function App() {
                  <img src={msg.img} alt={msg.name} className="event-img" />
               </div>
               <div className="event-info">
-                 <h4 className="message-title">USER: {msg.name}</h4>
+                 <h4 className="message-title">CHANNEL : {msg.name}</h4>
                  <p className="event-desc">{msg.desc}</p>
               </div>
             </div>
@@ -243,11 +272,17 @@ function App() {
       </section>
 
       {/* Powers and Positions Section / Footer */}
-      <footer className="neon-footer">
+      {/* Powers and Positions Section */}
+      <section id="powers" className="content-section column-layout">
         <div className="text-box w-100 text-center mb-40">
            <h3 className="section-heading">Powers and Positions :</h3>
         </div>
         <button className="broken-btn" onClick={handleBrokenButton}>[ DO NOT CLICK ]</button>
+      </section>
+
+      {/* Actual Site Footer */}
+      <footer className="site-footer">
+        <p className="copyright-text">Copyright &copy; Organising Committee : Illumine 2026</p>
       </footer>
     </div>
   );
