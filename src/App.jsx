@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { ReactLenis } from 'lenis/react';
 
 const Typewriter = ({ text, speed = 100, delay = 0, cursor = true }) => {
   const [displayedText, setDisplayedText] = useState("");
@@ -162,6 +163,7 @@ function App() {
   ];
 
   return (
+    <ReactLenis root options={{ lerp: 0.08, smoothWheel: true }}>
     <div className="app-container">
       {/* CRT Scanline Overlay (Covers the whole screen) */}
       <div className="scanlines"></div>
@@ -285,6 +287,7 @@ function App() {
         <p className="copyright-text">Copyright &copy; Organising Committee : Illumine 2026</p>
       </footer>
     </div>
+    </ReactLenis>
   );
 }
 
