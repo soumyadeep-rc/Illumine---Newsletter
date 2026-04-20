@@ -9,6 +9,46 @@
   --accent-red: #ff3333;
 }
 
+/* --- Hide Default Cursor --- */
+* {
+  cursor: none !important; 
+}
+
+/* --- Custom Neon Cursor Styles --- */
+.cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  background-color: var(--neon-cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000; 
+  margin: -4px 0 0 -4px;
+  box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 30px; height: 30px;
+  border: 2px solid var(--neon-purple);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  margin: -15px 0 0 -15px;
+  box-shadow: 0 0 15px rgba(217, 2, 238, 0.4);
+}
+
+/* --- Disable on Touch/Mobile Devices --- */
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+  * {
+    cursor: auto !important;
+  }
+  .cursor-dot, .cursor-ring {
+    display: none !important;
+  }
+}
+
 html.lenis, html.lenis body {
   height: auto;
 }
@@ -126,9 +166,9 @@ body {
   width: 50vw;
   height: 50vw;
   border-radius: 50%;
-  filter: blur(100px); /* Creates the soft plasma effect */
+  filter: blur(100px);
   z-index: 0;
-  opacity: 0.15; /* Keeps it subtle so it doesn't overpower text */
+  opacity: 0.15; 
   animation: drift 20s infinite alternate ease-in-out;
 }
 
@@ -170,24 +210,23 @@ body {
     rgba(0,0,0,0.2) 50%,
     rgba(0,0,0,0.2)
   );
-  background-size: 100% 4px; /* Size of the horizontal lines */
-  z-index: 1; /* Keeps it on top of everything */
-  pointer-events: none; /* Ensures you can still click buttons underneath it */
+  background-size: 100% 4px;
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* Dot-Matrix Glow Title */
 .neon-title {
   font-family: 'Arial Black', sans-serif !important; 
   font-size: 5.5rem; 
-  text-transform: lowercase; /* Forces it to match your reference image */
+  text-transform: lowercase;
   margin: 0;
   padding: 20px 0; 
   line-height: 1.2; 
-  letter-spacing: 12px; /* Extra spacing so the grid aligns nicely */
+  letter-spacing: 12px;
   
   color: transparent !important;
   
-  /* MAGIC TRICK: This draws a perfect grid of isolated white squares */
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"><rect width="9" height="9" fill="%23ffffff"/></svg>');
   
   -webkit-background-clip: text;
@@ -255,7 +294,6 @@ body {
 .mb-40 { margin-bottom: 40px; }
 
 /* --- Neon Elements & Typography --- */
-/* Base state for scroll focus */
 
 .neon-card {
   background-color: var(--bg-card);
@@ -283,7 +321,10 @@ body {
   transition: all 0.5s ease-in-out;
 }
 
-.neon-card:hover .neon-img, .neon-card.in-focus .neon-img { 
+.neon-img:hover, 
+.neon-img.in-focus, 
+.neon-card:hover .neon-img, 
+.neon-card.in-focus .neon-img { 
   opacity: 1; 
   box-shadow: 0 0 25px rgba(102, 252, 241, 0.6);
 }
@@ -437,7 +478,6 @@ body {
   box-shadow: 0 0 15px var(--accent-red);
 }
 
-/* --- Copyright Footer Text --- */
 /* --- Site Footer & Copyright --- */
 .site-footer {
   width: 100%;
